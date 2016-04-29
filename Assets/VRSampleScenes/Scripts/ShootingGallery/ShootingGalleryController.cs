@@ -38,7 +38,6 @@ namespace VRStandardAssets.ShootingGallery
 
         public bool IsPlaying { get; private set; }                     // Whether or not the game is currently playing.
 
-
         private IEnumerator Start()
         {
             // Set the game type for the score to be recorded correctly.
@@ -71,7 +70,7 @@ namespace VRStandardAssets.ShootingGallery
             // Turn on the tap warnings for the selection slider.
             m_InputWarnings.TurnOnDoubleTapWarnings ();
             m_InputWarnings.TurnOnSingleTapWarnings ();
-
+				
             // Wait for the selection slider to finish filling.
             yield return StartCoroutine (m_SelectionSlider.WaitForBarToFill ());
 

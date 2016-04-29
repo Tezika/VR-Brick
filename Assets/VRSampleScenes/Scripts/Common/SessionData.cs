@@ -15,9 +15,7 @@ namespace VRStandardAssets.Common
 			//积木游戏
 			BRICK,
 			//漫游游戏
-			ROAM,
-
-
+			ROAM
         };
 
 

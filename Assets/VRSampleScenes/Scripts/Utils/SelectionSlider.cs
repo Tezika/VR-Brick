@@ -10,10 +10,12 @@ namespace VRStandardAssets.Utils
     // either a UI slider or a mesh with the SlidingUV shader.  The
     // functions as a bar that fills up whilst the user looks at it
     // and holds down the Fire1 button.
+
+	public delegate IEnumerator BarFilledIEnumerator(); //add by Tezika;
     public class SelectionSlider : MonoBehaviour
     {
-        public event Action OnBarFilled;                                    // This event is triggered when the bar finishes filling.
-
+		public event Action OnBarFilled;                                    // This event is triggered when the bar finishes filling.
+		public event BarFilledIEnumerator onBarFilledIEnumerator;
 
         [SerializeField] private float m_Duration = 2f;                     // The length of time it takes for the bar to fill.
         [SerializeField] private AudioSource m_Audio;                       // Reference to the audio source that will play effects when the user looks at it and when it fills.
@@ -81,7 +83,7 @@ namespace VRStandardAssets.Utils
 
             // Reset the timer and set the slider value as such.
             m_Timer = 0f;
-            SetSliderValue (0f);
+            this.SetSliderValue (0f);
 
             // Keep coming back each frame until the bar is filled.
             while (!m_BarFilled)
@@ -132,6 +134,13 @@ namespace VRStandardAssets.Utils
             if (OnBarFilled != null)
                 OnBarFilled ();
 
+			//add by Tezika
+			if (onBarFilledIEnumerator != null) {
+				Debug.Log("send the event for filled the bar");
+//			    onBarFilledIEnumerator ();
+				StartCoroutine (onBarFilledIEnumerator ());
+			}
+
             // Play the clip for when the bar is filled.
             m_Audio.clip = m_OnFilledClip;
             m_Audio.Play();
@@ -176,7 +185,7 @@ namespace VRStandardAssets.Utils
 
         private void HandleOver ()
         {
-			Debug.Log ("EYE CAST THE UI SLIDER");
+			//Debug.Log ("EYE CAST THE UI SLIDER");
             // The user is now looking at the bar.
             m_GazeOver = true;
 
