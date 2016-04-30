@@ -22,6 +22,8 @@ namespace VRDemo.Game.Brick.Manager
 		[SerializeField] private UICtrl _uiCtrl;           // Used to encapsulate the UI.
 		[SerializeField] private InputWarnings _inputWarnings;         // Tap warnings need to be on for the intro and outro but off for the game itself.
 
+		[SerializeField]private SpwanObjsManager _sManager;
+
 
 		private bool _isPlaying = false;
 		void OnEnable(){
@@ -60,17 +62,10 @@ namespace VRDemo.Game.Brick.Manager
 			this._inputWarnings.TurnOnDoubleTapWarnings ();
 			this._inputWarnings.TurnOnSingleTapWarnings ();
 
-//			yield return StartCoroutine (this._selectionSlider.WaitForBarToFill ());
-//
-//			//turn off waring;
-//			this._inputWarnings.TurnOffSingleTapWarnings();
-//			this._inputWarnings.TurnOffDoubleTapWarnings ();
-//
-//			yield return StartCoroutine (this._uiCtrl.hideIntroUI ());
-
 		}
 		IEnumerator playPhase(){
-			this._reticle.Hide ();
+//			this._reticle.Hide ();
+			this._sManager.spwanObjs();
 			this._isPlaying = true;
 			yield return StartCoroutine (this._uiCtrl.showPlayUI ());
 			yield return StartCoroutine (this.playUpdate ());
