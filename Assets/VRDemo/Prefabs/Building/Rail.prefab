@@ -25214,7 +25214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5fdfd8d03f7ca4c8c738ff8867e9a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _flag: 1
+  _flag: 5
   _interactive: {fileID: 11407468}
   _rightColor: {r: 0.101960786, g: 0.8666667, b: 0.42352942, a: 0}
   _falseColor: {r: 0.85882354, g: 0.1254902, b: 0.1254902, a: 0}
@@ -25227,7 +25227,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: _flag
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 145706}

@@ -2,23 +2,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using VRStandardAssets.Utils;
+using VRDemo.Game.Brick.Manager;
+using VRDemo.Game.Brick.Delegate;
+
+namespace VRDemo.Game.Brick.Delegate
+{
+
+
+}
+
 namespace VRDemo.Game.Brick
 {
 	public class BrickCtrl : MonoBehaviour {
 		[SerializeField]private uint _flag = 1;
-		[SerializeField]private VRInteractiveItem _interactive;
+		[SerializeField]private VRInteractiveItem _interactive = null;
 		[SerializeField]private Color _rightColor;
 		[SerializeField]private Color _falseColor;
 		[SerializeField]private GameObject _rightObj;
 		[SerializeField]private GameObject _falseObj;
 		[SerializeField]private GameObject _normalObj;
 
-		private bool _isChoose = false;
+
+		private BricksManager _bricksManager;
+		private bool _isChooseRight = false;
 		private bool _isOver = false;
 
-		//all the child
+
+
 		// Use this for initialization
 		void Awake(){
+			//get bricksManager for tag;
+			this._bricksManager = GameObject.FindGameObjectWithTag("Building").gameObject.GetComponent<BricksManager>();
 			this.changeObjMaterialColor (this._rightObj,this._rightColor);
 			this.changeObjMaterialColor (this._falseObj, this._falseColor);
 		}
@@ -37,18 +51,37 @@ namespace VRDemo.Game.Brick
 		}
 		void handleOver(){
 //			this.changeChildrenMaterialColor (this._falseColor);
-			this._normalObj.SetActive(false);
-			this._rightObj.SetActive (true);
+			this._isOver = true;
+			bool res = this._bricksManager.judgeBrickIsRight (this._flag);
+			if (res) {
+				this._isChooseRight = true;
+				this._normalObj.SetActive (false);
+				this._rightObj.SetActive (true);
+			}else {
+				this._isChooseRight = false;
+				this._normalObj.SetActive (false);
+				this._falseObj.SetActive (true);
+			}
+
 		}
 		void handleOut(){
-			this._falseObj.SetActive (true);
-			this._rightObj.SetActive (false);
+			this._isOver = false;
+			this._isChooseRight = false;
+			this.restoreBrickItem ();
 			
 		}
 		void handleClick(){
-			
+			if (this._isOver && this._isChooseRight) {
+				Debug.Log ("yes can change");
+				this._bricksManager.changeBuildingPart (this._flag);
+				Destroy (this.gameObject);
+			}
 		}
-
+		void restoreBrickItem(){
+			this._normalObj.SetActive (true);
+			this._rightObj.SetActive (false);
+			this._falseObj.SetActive (false);
+		}
 		void changeObjMaterialColor(GameObject obj,Color c){
 			Renderer[] rens = obj.GetComponentsInChildren<Renderer> ();
 			for(int i = 0; i < rens.Length; ++i){

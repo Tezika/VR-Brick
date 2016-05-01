@@ -18,6 +18,7 @@ namespace VRDemo.Game.Brick.Manager
 			}
 		}
 		public void spwanObjs(){
+			Random.seed = (int)Time.time;
 			foreach (SpwanPosCtrl sctrl in _spwanPos) {
 				GameObject obj = this._objsList [Random.Range (0, this._objsList.Count)];
 				sctrl.spwanObj (obj);

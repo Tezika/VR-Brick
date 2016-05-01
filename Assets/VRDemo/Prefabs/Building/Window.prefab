@@ -1221,7 +1221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &116288
 GameObject:
   m_ObjectHideFlags: 1
@@ -3359,7 +3359,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &145392
 GameObject:
   m_ObjectHideFlags: 1
@@ -28764,7 +28764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5fdfd8d03f7ca4c8c738ff8867e9a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _flag: 1
+  _flag: 3
   _interactive: {fileID: 11468986}
   _rightColor: {r: 0.10207612, g: 0.86764705, b: 0.42414382, a: 0}
   _falseColor: {r: 0.8602941, g: 0.12651385, b: 0.12651385, a: 0}
@@ -28788,7 +28788,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: _flag
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 184248}

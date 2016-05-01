@@ -21,18 +21,22 @@ namespace VRDemo.Game.Brick.Manager
 		[SerializeField] private Image _progressBar;                      // The time remaining is shown on the UI for the hand, this is a reference to the image showing the time remaining.
 		[SerializeField] private UICtrl _uiCtrl;           // Used to encapsulate the UI.
 		[SerializeField] private InputWarnings _inputWarnings;         // Tap warnings need to be on for the intro and outro but off for the game itself.
-
 		[SerializeField]private SpwanObjsManager _sManager;
-
+		[SerializeField]private BricksManager _bManager;
 
 		private bool _isPlaying = false;
+		private bool _isFinish = false;
 		void OnEnable(){
 			this._selectionSlider.onBarFilledIEnumerator += handlePlayBarFilled;
 			this._quitSelectionSlider.onBarFilledIEnumerator += handleQuitBarFilled;
+			this._bManager.onAPartFinish += handleAPartFinish;
+			this._bManager.onBuildingFinish += handleBuildingFinish;
 		}
 		void OnDisable(){
 			this._selectionSlider.onBarFilledIEnumerator -= handlePlayBarFilled;
 			this._quitSelectionSlider.onBarFilledIEnumerator -= handleQuitBarFilled;
+			this._bManager.onAPartFinish -= handleAPartFinish;
+			this._bManager.onBuildingFinish -= handleBuildingFinish;
 		}
 		IEnumerator handlePlayBarFilled(){
 			Debug.Log ("receive the event for filled bar");
@@ -79,13 +83,21 @@ namespace VRDemo.Game.Brick.Manager
 		IEnumerator playUpdate(){
 			//set the timer;
 			float gameTimer = this._gameTime;
-			while (gameTimer > 0) {
+			while (gameTimer > 0 && ! this._isFinish) {
 				gameTimer -= Time.deltaTime;
 				this._timerBar.fillAmount = gameTimer / this._gameTime;
-				this._progressBar.fillAmount = 1 - gameTimer / this._gameTime;
 				yield return null;
 			}
 
+		}
+		IEnumerator handleAPartFinish(){
+			this._progressBar.fillAmount += 1.0f / (this._bManager.NumOfParts - 1);
+			yield return null;
+		}
+		IEnumerator handleBuildingFinish(){
+			this._progressBar.fillAmount = 1;
+			this._isFinish = true;
+			yield return null;
 		}
 	}
 }
