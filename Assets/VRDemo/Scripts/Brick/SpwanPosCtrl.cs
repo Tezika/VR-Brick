@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using VRDemo.Game.Brick.Manager;
+
 namespace VRDemo.Game.Brick
 {
 	public class SpwanPosCtrl : MonoBehaviour {
 		[SerializeField]private float _upSpeed = 5.0f;
 		[SerializeField]private float _upHigh = 0.2f;
+		[SerializeField]private SpwanObjsManager _sManager;
         
 		private bool _isCreated = false;
 		private GameObject _initObj;
@@ -26,6 +29,7 @@ namespace VRDemo.Game.Brick
 //				Debug.Log ("obj is in purpose pos");
 				this._isCreated = false;
 				this._initObj.GetComponent<Rigidbody> ().useGravity = true;
+				this._sManager.spwanObjReady ();
 				this.enabled = false;
 //				this._initObj.GetComponent<BoxCollider> ().isTrigger = false;
 			}

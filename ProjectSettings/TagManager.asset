@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Slider
   - Building
+  - GameController
   layers:
   - Default
   - TransparentFX

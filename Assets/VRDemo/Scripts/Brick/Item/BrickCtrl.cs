@@ -23,6 +23,8 @@ namespace VRDemo.Game.Brick
 		[SerializeField]private GameObject _normalObj;
 
 
+
+		private BrickGameManager _gManager;
 		private BricksManager _bricksManager;
 		private bool _isChooseRight = false;
 		private bool _isOver = false;
@@ -33,6 +35,7 @@ namespace VRDemo.Game.Brick
 		void Awake(){
 			//get bricksManager for tag;
 			this._bricksManager = GameObject.FindGameObjectWithTag("Building").gameObject.GetComponent<BricksManager>();
+			this._gManager = GameObject.FindGameObjectWithTag ("GameController").gameObject.GetComponent<BrickGameManager> ();
 			this.changeObjMaterialColor (this._rightObj,this._rightColor);
 			this.changeObjMaterialColor (this._falseObj, this._falseColor);
 		}
@@ -43,11 +46,16 @@ namespace VRDemo.Game.Brick
 			this._interactive.OnOver += handleOver;
 			this._interactive.OnOut += handleOut;
 			this._interactive.OnClick += handleClick;
+
+			this._gManager.onGameOver += handleGameOver;
 		}
 		void OnDisable(){
 			this._interactive.OnOver -= handleOver;
 			this._interactive.OnOut -= handleOut;
 			this._interactive.OnClick -= handleClick;
+
+			this._gManager.onGameOver -= handleGameOver;
+
 		}
 		void handleOver(){
 //			this.changeChildrenMaterialColor (this._falseColor);
@@ -76,6 +84,10 @@ namespace VRDemo.Game.Brick
 				this._bricksManager.changeBuildingPart (this._flag);
 				Destroy (this.gameObject);
 			}
+		}
+		void handleGameOver(){
+			this.restoreBrickItem ();
+			this.enabled = false;
 		}
 		void restoreBrickItem(){
 			this._normalObj.SetActive (true);

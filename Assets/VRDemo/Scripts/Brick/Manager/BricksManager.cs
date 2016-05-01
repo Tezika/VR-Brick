@@ -24,11 +24,7 @@ namespace VRDemo.Game.Brick.Manager
 		}
 		[SerializeField]private GameObject[] _buildingParts;
 		private uint _curRightFlag = 1;
-		private Dictionary<uint,Vector3> _posMap;
-		// Use this for initialization
-		void Start () {
 
-		}
 
 		// Update is called once per frame
 		void Update () {

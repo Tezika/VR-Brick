@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 using UnityEngine.UI;
 using VRDemo.Common;
 using VRDemo.Game.Brick.UI;
@@ -8,6 +9,9 @@ using VRStandardAssets.Utils;
 namespace VRDemo.Game.Brick.Manager
 {
 	public class BrickGameManager : MonoBehaviour {
+		public event Action onGameOver;
+
+
 		[SerializeField]private SeeionDataCtrl.GameType _gameType;
 		[SerializeField]private uint  _gameItemNum = 5;  //record the gameObj num
 		[SerializeField]private float _gameTime = 30.0f; //the time for finish game
@@ -24,31 +28,56 @@ namespace VRDemo.Game.Brick.Manager
 		[SerializeField]private SpwanObjsManager _sManager;
 		[SerializeField]private BricksManager _bManager;
 
-		private bool _isPlaying = false;
+		//already played the  game?
+		private bool _isPlayed = false;
+		//finish the game?
 		private bool _isFinish = false;
 		void OnEnable(){
 			this._selectionSlider.onBarFilledIEnumerator += handlePlayBarFilled;
 			this._quitSelectionSlider.onBarFilledIEnumerator += handleQuitBarFilled;
 			this._bManager.onAPartFinish += handleAPartFinish;
 			this._bManager.onBuildingFinish += handleBuildingFinish;
+			this._sManager.onSpwanObjReady += handleSpwanObjsReady;
 		}
 		void OnDisable(){
 			this._selectionSlider.onBarFilledIEnumerator -= handlePlayBarFilled;
 			this._quitSelectionSlider.onBarFilledIEnumerator -= handleQuitBarFilled;
 			this._bManager.onAPartFinish -= handleAPartFinish;
 			this._bManager.onBuildingFinish -= handleBuildingFinish;
+			this._sManager.onSpwanObjReady -= handleSpwanObjsReady;
 		}
 		IEnumerator handlePlayBarFilled(){
-			Debug.Log ("receive the event for filled bar");
 			//turn off waring;
-			this._inputWarnings.TurnOffSingleTapWarnings();
+			this._inputWarnings.TurnOffSingleTapWarnings ();
 			this._inputWarnings.TurnOffDoubleTapWarnings ();
-			yield return StartCoroutine (this._uiCtrl.hideIntroUI ());
-			yield return StartCoroutine (this.playPhase ());
-			yield return StartCoroutine (this.endPhase ());
+			if (!this._isPlayed) {
+				yield return StartCoroutine (this._uiCtrl.hideIntroUI ());
+				//create bricks for game
+				this._sManager.spwanObjs ();
+			} else {
+				if (this._isFinish) {
+					yield return StartCoroutine (this._uiCtrl.hideFinishUI());
+					//do somthing for roam;
+				} else {
+					yield return StartCoroutine (this._uiCtrl.hideDidntFinishUI ());
+					Application.LoadLevel (Application.loadedLevel);
+				}
+			}
+
 		}
 		IEnumerator handleQuitBarFilled(){
-			Debug.Log ("Quit Game");
+			if (!this._isPlayed) {
+				yield return StartCoroutine (this._uiCtrl.hideIntroUI ());
+				Application.Quit ();
+			} else {
+				if (this._isFinish) {
+					yield return StartCoroutine (this._uiCtrl.hideFinishUI ());
+				} else {
+					yield return StartCoroutine (this._uiCtrl.hideDidntFinishUI ());
+
+				}
+				Application.LoadLevel (Application.loadedLevel);
+			}
 			yield return null;
 		}
 
@@ -68,17 +97,20 @@ namespace VRDemo.Game.Brick.Manager
 
 		}
 		IEnumerator playPhase(){
-//			this._reticle.Hide ();
-			this._sManager.spwanObjs();
-			this._isPlaying = true;
+			//reset Game Data
+			SeeionDataCtrl.restart ();
 			yield return StartCoroutine (this._uiCtrl.showPlayUI ());
 			yield return StartCoroutine (this.playUpdate ());
-			yield return StartCoroutine (this._uiCtrl.hidePlayUI ());
 		}
+		//finish the game in time;
 		IEnumerator endPhase(){
-			this._selectionRadial.Show ();
-			this._isPlaying = false;
-			yield return StartCoroutine (this._uiCtrl.showOutroUI ());
+			this._isPlayed = true;
+			yield return StartCoroutine (this._uiCtrl.showFinishUI ());
+		}
+		//cant finish the game in time;
+		IEnumerator overPhase(){
+			this._isPlayed = true;
+			yield return StartCoroutine (this._uiCtrl.showDidntFinishUI ());
 		}
 		IEnumerator playUpdate(){
 			//set the timer;
@@ -87,6 +119,19 @@ namespace VRDemo.Game.Brick.Manager
 				gameTimer -= Time.deltaTime;
 				this._timerBar.fillAmount = gameTimer / this._gameTime;
 				yield return null;
+			}
+			yield return StartCoroutine (this._uiCtrl.hidePlayUI ());
+
+			//gane over
+			if(this.onGameOver != null){
+				this.onGameOver ();
+			}
+			//finish or not?
+			if (this._isFinish) {
+				SeeionDataCtrl.setGamTime (this._gameTime - gameTimer);
+				yield return StartCoroutine (endPhase ());
+			} else {
+				yield return StartCoroutine (overPhase ());
 			}
 
 		}
@@ -98,6 +143,10 @@ namespace VRDemo.Game.Brick.Manager
 			this._progressBar.fillAmount = 1;
 			this._isFinish = true;
 			yield return null;
+		}
+
+		IEnumerator handleSpwanObjsReady(){
+			yield return StartCoroutine (this.playPhase ());
 		}
 	}
 }

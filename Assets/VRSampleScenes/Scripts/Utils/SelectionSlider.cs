@@ -29,9 +29,10 @@ namespace VRStandardAssets.Utils
         [SerializeField] private SelectionRadial m_SelectionRadial;         // Optional reference to the SelectionRadial, if non-null the duration of the SelectionRadial will be used instead.
         [SerializeField] private UIFader m_UIFader;                         // Optional reference to a UIFader, used if the SelectionSlider needs to fade out.
         [SerializeField] private Collider m_Collider;                       // Optional reference to the Collider used to detect the user's gaze, turned off when the UIFader is not visible.
-        [SerializeField] private bool m_DisableOnBarFill;                   // Whether the bar should stop reacting once it's been filled (for single use bars).
-        [SerializeField] private bool m_DisappearOnBarFill;                 // Whether the bar should disappear instantly once it's been filled.
-
+		[SerializeField] private bool m_DisableOnBarFill = false;                  // Whether the bar should stop reacting once it's been filled (for single use bars).
+        [SerializeField] private bool m_DisappearOnBarFill = false;                 // Whether the bar should disappear instantly once it's been filled.
+		//add by tezika；replace the collider to groupAlpha
+		[SerializeField]private CanvasGroup m_group;
 
         private bool m_BarFilled;                                           // Whether the bar is currently filled.
         private bool m_GazeOver;                                            // Whether the user is currently looking at the bar.
@@ -64,11 +65,18 @@ namespace VRStandardAssets.Utils
 
         private void Update ()
         {
-            if(!m_UIFader)
-                return;
+//            if(!m_UIFader)
+//                return;
 
             // If this bar is using a UIFader turn off the collider when it's invisible.
-            m_Collider.enabled = m_UIFader.Visible;
+//            m_Collider.enabled = m_UIFader.Visible;
+
+			//modify by tezika
+			if (m_group.alpha == 0) {
+				m_Collider.enabled = false;
+			} else if (m_group.alpha == 1) {
+				m_Collider.enabled = true;
+			}
         }
 
 

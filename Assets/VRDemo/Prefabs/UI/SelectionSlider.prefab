@@ -277,7 +277,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Ok, I got it!
+  m_Text: Lets go, I got it!
 --- !u!114 &11456930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -367,6 +367,7 @@ MonoBehaviour:
   m_Collider: {fileID: 6520984}
   m_DisableOnBarFill: 0
   m_DisappearOnBarFill: 0
+  m_group: {fileID: 22574288}
 --- !u!114 &11490406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -522,7 +523,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -1.83, y: 0.5}
   m_SizeDelta: {x: 50, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22486866
