@@ -10,10 +10,10 @@ namespace VRDemo.Game.Brick.Manager
 {
 	public class BrickGameManager : MonoBehaviour {
 		public event Action onGameOver;
+		public event Action onGameFinish;
 
 
 		[SerializeField]private SeeionDataCtrl.GameType _gameType;
-		[SerializeField]private uint  _gameItemNum = 5;  //record the gameObj num
 		[SerializeField]private float _gameTime = 30.0f; //the time for finish game
 		[SerializeField]private float _endDelayTime = 1.5f; //the time for outro ui
 		[SerializeField] private SelectionSlider _selectionSlider;     // Used to confirm the user has understood the intro UI.
@@ -84,9 +84,9 @@ namespace VRDemo.Game.Brick.Manager
 		IEnumerator Start(){
 			SeeionDataCtrl.SetGameType (_gameType);
 			yield return StartCoroutine (startPhase ());
-//			yield return StartCoroutine (playPhase ());
-//			yield return StartCoroutine (endPhase ());
+
 		}
+
 		IEnumerator startPhase(){
 			yield return StartCoroutine (this._uiCtrl.showIntroUI());
 			this._reticle.Show();
