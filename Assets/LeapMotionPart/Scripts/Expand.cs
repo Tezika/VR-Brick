@@ -28,8 +28,9 @@ public static class Expand  {
     {
         if(hand.target != null)
         {
-            hand.target.rotation = hand.palm.rotation;
-          hand.target.Rotate(new Vector3(0, 1, 0), -60);
+            hand.target.rotation = hand.palm.rotation; 
+			//why?
+			hand.target.Rotate(new Vector3(0, 1, 0), -60);
         }
            
         

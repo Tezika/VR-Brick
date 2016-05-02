@@ -23,7 +23,8 @@ public class Recipient : MonoBehaviour {
 
     public virtual void OnTriggerStay(Collider other)
     {
-        if(other.tag == "RightHand")
+		//modify by tezika
+		if(other.tag == "RightHand")
         {
             if(HandManager._instance.GetHandType(other.tag) == HandType.Catch)
             {

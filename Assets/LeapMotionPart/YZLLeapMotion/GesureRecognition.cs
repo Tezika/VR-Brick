@@ -52,7 +52,7 @@ namespace YZL.LeapMotion.Algorithm
                      }
                  }
              }
-             
+
              return HandType.Normal;
          }
      }

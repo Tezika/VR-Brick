@@ -17,6 +17,9 @@ namespace VRDemo.Common
 			
 		private const string k_brickData = "brickData";
 		private const string k_roamData = "roamData";
+		private const string k_leftHandTag = "LeftHand";
+		private const string k_rightHandTag = "RightHand";
+
 
 
 
@@ -27,6 +30,8 @@ namespace VRDemo.Common
 
 		public static float BestTime { get { return s_bestTime; } }
 		public static float Time { get { return s_time; } }
+		public static string LeftHand{get{ return k_leftHandTag;}}
+		public static string RightHand{get{ return k_rightHandTag;}}
 
 
 		public static void SetGameType(GameType gameType)

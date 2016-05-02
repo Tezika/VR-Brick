@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using VRDemo.Game.Brick.Hand;
 namespace YZL.LeapMotion.Algorithm
 {
 
@@ -8,7 +8,7 @@ namespace YZL.LeapMotion.Algorithm
     {
 
         public abstract bool Check(Transform[] finger,Transform plam = null);
-        public abstract HandType GetType();
+		public abstract HandType GetType();
 
 
         public float GetAugular(Vector3 one,Vector3 two,Vector3 three)

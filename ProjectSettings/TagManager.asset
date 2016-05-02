@@ -7,6 +7,9 @@ TagManager:
   - Slider
   - Building
   - GameController
+  - RightHand
+  - Sphere
+  - LeftHand
   layers:
   - Default
   - TransparentFX
