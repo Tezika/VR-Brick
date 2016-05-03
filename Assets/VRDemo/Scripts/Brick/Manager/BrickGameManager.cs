@@ -5,14 +5,14 @@ using UnityEngine.UI;
 using VRDemo.Common;
 using VRDemo.Game.Brick.UI;
 using VRStandardAssets.Utils;
-
+using VRDemo.Game.Brick.Hand;
 namespace VRDemo.Game.Brick.Manager
 {
 	public class BrickGameManager : MonoBehaviour {
 		public event Action onGameOver;
 		public event Action onGameFinish;
 
-
+		[SerializeField]private  HandCtrl _hctrl;
 		[SerializeField]private SeeionDataCtrl.GameType _gameType;
 		[SerializeField]private float _gameTime = 30.0f; //the time for finish game
 		[SerializeField]private float _endDelayTime = 1.5f; //the time for outro ui
@@ -99,17 +99,23 @@ namespace VRDemo.Game.Brick.Manager
 		IEnumerator playPhase(){
 			//reset Game Data
 			SeeionDataCtrl.restart ();
+			this._reticle.Hide ();
+			this._hctrl.enabled = true;
 			yield return StartCoroutine (this._uiCtrl.showPlayUI ());
 			yield return StartCoroutine (this.playUpdate ());
 		}
 		//finish the game in time;
 		IEnumerator endPhase(){
 			this._isPlayed = true;
+			this._reticle.Show ();
+			this._hctrl.enabled = false;
 			yield return StartCoroutine (this._uiCtrl.showFinishUI ());
 		}
 		//cant finish the game in time;
 		IEnumerator overPhase(){
 			this._isPlayed = true;
+			this._reticle.Show ();
+			this._hctrl.enabled = false;
 			yield return StartCoroutine (this._uiCtrl.showDidntFinishUI ());
 		}
 		IEnumerator playUpdate(){

@@ -28,7 +28,7 @@ namespace VRDemo.Game.Brick
 			} else {
 //				Debug.Log ("obj is in purpose pos");
 				this._isCreated = false;
-				this._initObj.GetComponent<Rigidbody> ().useGravity = true;
+//				this._initObj.GetComponent<Rigidbody> ().useGravity = true;
 				this._sManager.spwanObjReady ();
 				this.enabled = false;
 //				this._initObj.GetComponent<BoxCollider> ().isTrigger = false;

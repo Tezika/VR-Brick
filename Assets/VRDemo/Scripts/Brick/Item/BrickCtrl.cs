@@ -15,7 +15,6 @@ namespace VRDemo.Game.Brick
 {
 	public class BrickCtrl : MonoBehaviour {
 		[SerializeField]private uint _flag = 1;
-		[SerializeField]private VRInteractiveItem _interactive = null;
 		[SerializeField]private Color _rightColor;
 		[SerializeField]private Color _falseColor;
 		[SerializeField]private GameObject _rightObj;
@@ -27,7 +26,7 @@ namespace VRDemo.Game.Brick
 		private BrickGameManager _gManager;
 		private BricksManager _bricksManager;
 		private bool _isChooseRight = false;
-		private bool _isOver = false;
+		private bool _isOver = true;
 
 
 
@@ -43,57 +42,53 @@ namespace VRDemo.Game.Brick
 			
 		}
 		void OnEnable(){
-			this._interactive.OnOver += handleOver;
-			this._interactive.OnOut += handleOut;
-			this._interactive.OnClick += handleClick;
+//			this._interactive.OnOver += handleOver;
+//			this._interactive.OnOut += handleOut;
+//			this._interactive.OnClick += handleClick;
 
 			this._gManager.onGameOver += handleGameOver;
 		}
 		void OnDisable(){
-			this._interactive.OnOver -= handleOver;
-			this._interactive.OnOut -= handleOut;
-			this._interactive.OnClick -= handleClick;
+//			this._interactive.OnOver -= handleOver;
+//			this._interactive.OnOut -= handleOut;
+//			this._interactive.OnClick -= handleClick;
 
 			this._gManager.onGameOver -= handleGameOver;
 
 		}
-		void handleOver(){
-//			this.changeChildrenMaterialColor (this._falseColor);
-			this._isOver = true;
-			bool res = this._bricksManager.judgeBrickIsRight (this._flag);
-			if (res) {
-				this._isChooseRight = true;
-				this._normalObj.SetActive (false);
-				this._rightObj.SetActive (true);
-			}else {
-				this._isChooseRight = false;
-				this._normalObj.SetActive (false);
-				this._falseObj.SetActive (true);
-			}
-
-		}
-		void handleOut(){
-			this._isOver = false;
-			this._isChooseRight = false;
-			this.restoreBrickItem ();
-			
-		}
+//		void handleOver(){
+////			this.changeChildrenMaterialColor (this._falseColor);
+//			this._isOver = true;
+//			bool res = this._bricksManager.judgeBrickIsRight (this._flag);
+//			if (res) {
+//				this._isChooseRight = true;
+//				this._normalObj.SetActive (false);
+//				this._rightObj.SetActive (true);
+//			}else {
+//				this._isChooseRight = false;
+//				this._normalObj.SetActive (false);
+//				this._falseObj.SetActive (true);
+//			}
+//
+//		}
+//		void handleOut(){
+//			this._isOver = false;
+//			this._isChooseRight = false;
+//			this.restoreBrickItem ();
+//			
+//		}
 		void handleClick(){
-			if (this._isOver && this._isChooseRight) {
-				Debug.Log ("yes can change");
-				this._bricksManager.changeBuildingPart (this._flag);
-				Destroy (this.gameObject);
-			}
+//			if (this._isOver && this._isChooseRight) {
+//				Debug.Log ("yes can change");
+//				this._bricksManager.changeBuildingPart (this._flag);
+//				Destroy (this.gameObject);
+//			}
 		}
 		void handleGameOver(){
 			this.restoreBrickItem ();
 			this.enabled = false;
 		}
-		void restoreBrickItem(){
-			this._normalObj.SetActive (true);
-			this._rightObj.SetActive (false);
-			this._falseObj.SetActive (false);
-		}
+
 		void changeObjMaterialColor(GameObject obj,Color c){
 			Renderer[] rens = obj.GetComponentsInChildren<Renderer> ();
 			for(int i = 0; i < rens.Length; ++i){
@@ -103,7 +98,34 @@ namespace VRDemo.Game.Brick
 				}
 			}
 
-	   }
+	    }
+		IEnumerator checkRight(float delayTime){
+			yield return new WaitForSeconds (delayTime);
+			this._bricksManager.changeBuildingPart (this._flag);
+			this.gameObject.SetActive (false); // in order to fix the cant check the bug.
+			Destroy (this.gameObject,delayTime);
+		}
+		//check cur brick is right or false?
+		public void checkBrickRightOrFalse(){
+			Debug.LogWarning ("cur brick's tag is :" + this._flag);
+			bool res = this._bricksManager.judgeBrickIsRight (this._flag);
+			if (res) {
+				this._isChooseRight = true;
+				this._normalObj.SetActive (false);
+				this._rightObj.SetActive (true);
+				StartCoroutine (this.checkRight (1.0f));
+			}else {
+				this._isChooseRight = false;
+				this._normalObj.SetActive (false);
+				this._falseObj.SetActive (true);
+			}
+		}
+		//
+		public void restoreBrickItem(){
+		    this._normalObj.SetActive (true);
+			this._rightObj.SetActive (false);
+			this._falseObj.SetActive (false);
+		}
 
 	}
 }

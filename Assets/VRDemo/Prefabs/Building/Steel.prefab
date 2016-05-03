@@ -1591,8 +1591,8 @@ GameObject:
   - 4: {fileID: 450606}
   - 54: {fileID: 5420748}
   - 65: {fileID: 6568506}
-  - 114: {fileID: 11469216}
   - 114: {fileID: 11443364}
+  - 114: {fileID: 11411042}
   m_Layer: 0
   m_Name: Steel
   m_TagString: Untagged
@@ -2815,8 +2815,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 174054}
   m_LocalRotation: {x: 0.7071066, y: 0, z: 0, w: -0.70710695}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.6, y: 1.2, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 462256}
   - {fileID: 441154}
@@ -7697,11 +7697,23 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 174054}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5, z: 0.1}
+  m_Size: {x: 1, y: 0.6, z: 0.23}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11411042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94150739495d2fa479adeecfee5ced92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bCtrl: {fileID: 11443364}
 --- !u!114 &11443364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7714,23 +7726,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _flag: 4
-  _interactive: {fileID: 11469216}
   _rightColor: {r: 0.101960786, g: 0.8666667, b: 0.42352942, a: 0}
   _falseColor: {r: 0.85882354, g: 0.1254902, b: 0.1254902, a: 0}
   _rightObj: {fileID: 190416}
   _falseObj: {fileID: 193346}
   _normalObj: {fileID: 195942}
---- !u!114 &11469216
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 174054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fea6f8eea666334aaf9869ad8f7bcda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -7745,6 +7745,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: _flag
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

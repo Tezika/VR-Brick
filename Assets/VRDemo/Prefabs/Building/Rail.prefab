@@ -3238,6 +3238,7 @@ GameObject:
   - 65: {fileID: 6551372}
   - 114: {fileID: 11407468}
   - 114: {fileID: 11446108}
+  - 114: {fileID: 11405352}
   m_Layer: 0
   m_Name: Rail
   m_TagString: Untagged
@@ -9407,8 +9408,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145706}
   m_LocalRotation: {x: 0.7071066, y: 0, z: 0, w: -0.70710695}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.6, y: 0.8, z: -0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 465948}
   - {fileID: 471070}
@@ -25187,11 +25188,23 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145706}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.41, z: 0.15}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.6, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0.1}
+--- !u!114 &11405352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94150739495d2fa479adeecfee5ced92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bCtrl: {fileID: 11446108}
 --- !u!114 &11407468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25209,13 +25222,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145706}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d5fdfd8d03f7ca4c8c738ff8867e9a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _flag: 5
-  _interactive: {fileID: 11407468}
   _rightColor: {r: 0.101960786, g: 0.8666667, b: 0.42352942, a: 0}
   _falseColor: {r: 0.85882354, g: 0.1254902, b: 0.1254902, a: 0}
   _rightObj: {fileID: 164602}
@@ -25231,6 +25243,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: _flag
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

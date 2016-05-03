@@ -60,7 +60,7 @@ public class Recipient : MonoBehaviour {
                     transform.parent = parent;
                     HandManager._instance.right = false;
                     rigid.isKinematic = false;
-                    rigid.useGravity = true;
+//                    rigid.useGravity = true;
 
                 }
             }

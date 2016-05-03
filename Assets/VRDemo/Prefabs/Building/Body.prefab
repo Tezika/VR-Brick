@@ -4112,7 +4112,7 @@ GameObject:
   - 54: {fileID: 5421072}
   - 65: {fileID: 6528230}
   - 114: {fileID: 11457572}
-  - 114: {fileID: 11404890}
+  - 114: {fileID: 11495724}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -6702,8 +6702,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166596}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0.488, z: 1.097}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.6, y: 0.8, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 446014}
   - {fileID: 406452}
@@ -22766,22 +22766,11 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166596}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.4, z: 0.2}
+  m_Size: {x: 1, y: 0.6, z: 0.4}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11404890
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 166596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fea6f8eea666334aaf9869ad8f7bcda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11457572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22794,12 +22783,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _flag: 2
-  _interactive: {fileID: 11404890}
+  _interactive: {fileID: 0}
   _rightColor: {r: 0.10207612, g: 0.86764705, b: 0.42414382, a: 0}
   _falseColor: {r: 0.8602941, g: 0.12651385, b: 0.12651385, a: 0}
   _rightObj: {fileID: 169624}
   _falseObj: {fileID: 110556}
   _normalObj: {fileID: 158468}
+--- !u!114 &11495724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94150739495d2fa479adeecfee5ced92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hCtrl: {fileID: 0}
+  _bCtrl: {fileID: 11457572}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
