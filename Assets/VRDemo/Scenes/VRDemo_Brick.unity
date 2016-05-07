@@ -830,7 +830,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Now\uFF0Cplease watch the \norder of the building's parts carfully :)"
+  m_Text: "Now,please watch the \norder of the building's parts carfully:)"
 --- !u!222 &273649543
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2270,7 +2270,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: OK,next you have to rebuild it.
+  m_Text: OK,you have to rebuild it within the time limit,good luck:)
 --- !u!222 &557210860
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2828,7 +2828,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: " Finish the building \n within the time limit :)"
+  m_Text: 'Using the thumb gesture to fill the bar
+
+    when you gaze over the bar:)'
 --- !u!222 &698702695
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4131,7 +4133,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1160968317}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac3f704dc794a4344bf6b00efccc9652, type: 3}
   m_Name: 
@@ -4851,12 +4853,16 @@ Prefab:
       objectReference: {fileID: 930569737}
     - target: {fileID: 22437964, guid: c10ace7851837a5458c584621306f8e3, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11450808, guid: c10ace7851837a5458c584621306f8e3, type: 2}
       propertyPath: m_Text
       value: I wanna quit!
       objectReference: {fileID: 0}
+    - target: {fileID: 11473032, guid: c10ace7851837a5458c584621306f8e3, type: 2}
+      propertyPath: _hCtrl
+      value: 
+      objectReference: {fileID: 1160968320}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c10ace7851837a5458c584621306f8e3, type: 2}
   m_IsPrefabParent: 0
@@ -6247,7 +6253,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: please catch the building's part  above the bottom:)
+  m_Text: Catch th part above the bottom:)
 --- !u!222 &1571525871
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7206,8 +7212,12 @@ Prefab:
       objectReference: {fileID: 930569737}
     - target: {fileID: 22437964, guid: c10ace7851837a5458c584621306f8e3, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11473032, guid: c10ace7851837a5458c584621306f8e3, type: 2}
+      propertyPath: _hCtrl
+      value: 
+      objectReference: {fileID: 1160968320}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c10ace7851837a5458c584621306f8e3, type: 2}
   m_IsPrefabParent: 0

@@ -114,7 +114,7 @@ namespace VRDemo.Game.Brick.Manager
 			//reset Game Data
 			SeeionDataCtrl.restart ();
 			this._reticle.Hide ();
-			this._hctrl.enabled = true;
+//			this._hctrl.enabled = true;
 			yield return StartCoroutine (this._uiCtrl.showPlayUI ());
 			yield return StartCoroutine (this._uiCtrl.showPlayTipUI ());
 			yield return StartCoroutine (this.playUpdate ());
@@ -123,7 +123,7 @@ namespace VRDemo.Game.Brick.Manager
 		IEnumerator endPhase(){
 			this._isPlayed = true;
 			this._reticle.Show ();
-			this._hctrl.enabled = false;
+//			this._hctrl.enabled = false;
 			yield return StartCoroutine (this._uiCtrl.showFinishUI ());
 		}
 		//cant finish the game in time;

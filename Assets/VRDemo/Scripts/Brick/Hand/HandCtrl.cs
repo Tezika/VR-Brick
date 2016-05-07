@@ -7,6 +7,9 @@ namespace VRDemo.Game.Brick.Hand
 {
 	public class HandCtrl : MonoBehaviour {
 		public event Action onHandInRange;
+		public event Action onAppearThumbGesture;
+		public event Action onCancleThumbGesture;
+
 		[SerializeField]private CapsuleHand _leftHand;
 		[SerializeField]private CapsuleHand _rightHand;
 		[SerializeField]private bool _isLeftCatch = false;
@@ -36,7 +39,7 @@ namespace VRDemo.Game.Brick.Hand
 			this._dectCtrl.onHandInDetection += handleOnHandIndetection;
 		}
 		void handleOnHandIndetection(){
-			Debug.Log("on hand in detection range");
+//			Debug.Log("on hand in detection range");
 			if (this.onHandInRange != null) {
 				this.onHandInRange ();
 			}
@@ -57,6 +60,9 @@ namespace VRDemo.Game.Brick.Hand
 			this._hand2GestureMap [this._leftHand] = this._leftHandGes;
 			this._rightHandGes = this._rightHand.getGesture ();
 			this._hand2GestureMap [this._rightHand] = this._rightHandGes;
+			Debug.Log (this._hand2GestureMap [this._rightHand]);
+			//check if there was thumbgesture?
+			this.checkThumbGesture();
 			this._leftHand.updateTarget ();
 			this._rightHand.updateTarget ();
 		}
@@ -81,6 +87,18 @@ namespace VRDemo.Game.Brick.Hand
 		}
 		public void toggleHandIsCatch(string tag){
 			toggleHandIsCatch (getHandByName (tag));
+		}
+
+		public void checkThumbGesture(){
+			if (this._hand2GestureMap [this._rightHand] == GestureType.Thumb || this._hand2GestureMap [this._leftHand] == GestureType.Thumb) {
+				if (this.onAppearThumbGesture != null) {
+					this.onAppearThumbGesture ();
+				}
+			} else {
+				if (this.onCancleThumbGesture != null) {
+					this.onCancleThumbGesture ();
+				}
+			}
 		}
 	}
 

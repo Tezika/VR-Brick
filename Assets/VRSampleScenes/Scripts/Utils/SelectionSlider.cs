@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+using VRDemo.Game.Brick.Hand;
 namespace VRStandardAssets.Utils
 {
     // This class works similarly to the SelectionRadial class except
@@ -33,11 +33,14 @@ namespace VRStandardAssets.Utils
         [SerializeField] private bool m_DisappearOnBarFill = false;                 // Whether the bar should disappear instantly once it's been filled.
 		//add by tezika；replace the collider to groupAlpha
 		[SerializeField]private CanvasGroup m_group;
+		[SerializeField]private HandCtrl _hCtrl;
 
+		private bool _isFilling = false;
         private bool m_BarFilled;                                           // Whether the bar is currently filled.
         private bool m_GazeOver;                                            // Whether the user is currently looking at the bar.
         private float m_Timer;                                              // Used to determine how much of the bar should be filled.
-        private Coroutine m_FillBarRoutine;                                 // Reference to the coroutine that controls the bar filling up, used to stop it if required.
+        private Coroutine m_FillBarRoutine;      
+		// Reference to the coroutine that controls the bar filling up, used to stop it if required.
 
 
         private const string k_SliderMaterialPropertyName = "_SliderValue"; // The name of the property on the SlidingUV shader that needs to be changed in order for it to fill.
@@ -50,6 +53,9 @@ namespace VRStandardAssets.Utils
 
             m_InteractiveItem.OnOver += HandleOver;
             m_InteractiveItem.OnOut += HandleOut;
+
+			this._hCtrl.onAppearThumbGesture += handleThumbGesture;
+			this._hCtrl.onCancleThumbGesture += handleCancleTheHandleGesture;
         }
 
 
@@ -60,6 +66,9 @@ namespace VRStandardAssets.Utils
 
             m_InteractiveItem.OnOver -= HandleOver;
             m_InteractiveItem.OnOut -= HandleOut;
+
+			this._hCtrl.onAppearThumbGesture -= handleThumbGesture;
+			this._hCtrl.onCancleThumbGesture -= handleCancleTheHandleGesture;
         }
 
 
@@ -132,6 +141,7 @@ namespace VRStandardAssets.Utils
                 // If the user is no longer looking at the bar, reset the timer and bar and leave the function.
                 m_Timer = 0f;
                 SetSliderValue (0f);
+				this._isFilling = !this._isFilling;
                 yield break;
             }
 
@@ -144,7 +154,7 @@ namespace VRStandardAssets.Utils
 
 			//add by Tezika
 			if (onBarFilledIEnumerator != null) {
-				Debug.Log("send the event for filled the bar");
+//				Debug.Log("send the event for filled the bar");
 //			    onBarFilledIEnumerator ();
 				StartCoroutine (onBarFilledIEnumerator ());
 			}
@@ -216,5 +226,25 @@ namespace VRStandardAssets.Utils
             m_Timer = 0f;
             SetSliderValue(0f);
         }
+
+		void handleThumbGesture(){
+			if (m_GazeOver && !this._isFilling) {
+				this._isFilling = !this._isFilling;
+				//prevent the update all the time
+				Debug.Log("start filling");
+				 m_FillBarRoutine = StartCoroutine(FillBar());	
+				}
+			}
+
+		void handleCancleTheHandleGesture(){
+			// If the coroutine has been started (and thus we have a reference to it) stop it.
+			if(m_FillBarRoutine != null)
+				StopCoroutine (m_FillBarRoutine);
+
+			// Reset the timer and bar values.
+			m_Timer = 0f;
+			SetSliderValue(0f);
+			this._isFilling = !this._isFilling;
+		}
     }
 }

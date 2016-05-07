@@ -10,6 +10,8 @@ namespace VRDemo.Game.Brick.Hand
 		Catch,
 		//打开
 		Open,
+		//Thumb手势
+		Thumb,
 		//正常手势
 		None
 	}
@@ -30,6 +32,7 @@ namespace VRDemo.Game.Brick.Hand
 		void init(){
 			this._gestureList.Add (new OpenGesture ());
 			this._gestureList.Add (new CatchGesture ());
+			this._gestureList.Add (new ThumbGesture ());
 		}
 		//get a gesture type
 		public GestureType checkAGesture(Transform[] fingerJoints,Transform palm){

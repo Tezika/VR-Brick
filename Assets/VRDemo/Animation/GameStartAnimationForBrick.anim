@@ -148,7 +148,7 @@ AnimationClip:
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
-      - time: 21.083334
+      - time: 24.5
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -168,7 +168,7 @@ AnimationClip:
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
-      - time: 21.083334
+      - time: 24.5
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -188,7 +188,7 @@ AnimationClip:
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
-      - time: 21.083334
+      - time: 24.5
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -208,7 +208,7 @@ AnimationClip:
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
-      - time: 21.083334
+      - time: 24.5
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -228,7 +228,7 @@ AnimationClip:
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
-      - time: 21.083334
+      - time: 24.5
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -248,7 +248,7 @@ AnimationClip:
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
-      - time: 21.083334
+      - time: 24.5
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -352,7 +352,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 21.183332
+    m_StopTime: 24.583334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -741,7 +741,7 @@ AnimationClip:
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
-      - time: 21.083334
+      - time: 24.5
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -761,7 +761,7 @@ AnimationClip:
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
-      - time: 21.083334
+      - time: 24.5
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -781,7 +781,7 @@ AnimationClip:
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
-      - time: 21.083334
+      - time: 24.5
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -801,7 +801,7 @@ AnimationClip:
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
-      - time: 21.083334
+      - time: 24.5
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -821,7 +821,7 @@ AnimationClip:
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
-      - time: 21.083334
+      - time: 24.5
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -841,7 +841,7 @@ AnimationClip:
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
-      - time: 21.083334
+      - time: 24.5
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -858,7 +858,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 21.183332
+  - time: 24.583334
     functionName: restorePartPos
     data: 
     objectReferenceParameter: {fileID: 0}
