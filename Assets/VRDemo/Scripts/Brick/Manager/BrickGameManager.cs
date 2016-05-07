@@ -27,6 +27,9 @@ namespace VRDemo.Game.Brick.Manager
 		[SerializeField] private InputWarnings _inputWarnings;         // Tap warnings need to be on for the intro and outro but off for the game itself.
 		[SerializeField]private SpwanObjsManager _sManager;
 		[SerializeField]private BricksManager _bManager;
+		[SerializeField]private Animator _bricksAnimator;
+		[SerializeField]private float _aniDelayTime = 2.0f;
+		[SerializeField]private float _aniUIAppearTime = 3.0f;
 
 		//already played the  game?
 		private bool _isPlayed = false;
@@ -38,6 +41,7 @@ namespace VRDemo.Game.Brick.Manager
 			this._bManager.onAPartFinish += handleAPartFinish;
 			this._bManager.onBuildingFinish += handleBuildingFinish;
 			this._sManager.onSpwanObjReady += handleSpwanObjsReady;
+			this._bManager.onBrickAniFinish += handleBrickStratAniFinish;
 		}
 		void OnDisable(){
 			this._selectionSlider.onBarFilledIEnumerator -= handlePlayBarFilled;
@@ -45,6 +49,15 @@ namespace VRDemo.Game.Brick.Manager
 			this._bManager.onAPartFinish -= handleAPartFinish;
 			this._bManager.onBuildingFinish -= handleBuildingFinish;
 			this._sManager.onSpwanObjReady -= handleSpwanObjsReady;
+			this._bManager.onBrickAniFinish -= handleBrickStratAniFinish;
+		}
+		IEnumerator handleBrickStratAniFinish(){
+			yield return StartCoroutine (this._uiCtrl.hideAniStartUI ());
+			yield return StartCoroutine (this._uiCtrl.showAniEndUI ());
+			yield return new WaitForSeconds (this._aniUIAppearTime);
+			yield return StartCoroutine (this._uiCtrl.hideAniEndUI ());
+			//create bricks for game
+			this._sManager.spwanObjs ();
 		}
 		IEnumerator handlePlayBarFilled(){
 			//turn off waring;
@@ -52,8 +65,10 @@ namespace VRDemo.Game.Brick.Manager
 			this._inputWarnings.TurnOffDoubleTapWarnings ();
 			if (!this._isPlayed) {
 				yield return StartCoroutine (this._uiCtrl.hideIntroUI ());
-				//create bricks for game
-				this._sManager.spwanObjs ();
+				yield return StartCoroutine (this._uiCtrl.showAniStartUI ());
+				//wait for seconds 
+				yield return new WaitForSeconds(this._aniDelayTime);
+				this._bricksAnimator.SetTrigger("AniStart");
 			} else {
 				if (this._isFinish) {
 					yield return StartCoroutine (this._uiCtrl.hideFinishUI());
@@ -74,7 +89,6 @@ namespace VRDemo.Game.Brick.Manager
 					yield return StartCoroutine (this._uiCtrl.hideFinishUI ());
 				} else {
 					yield return StartCoroutine (this._uiCtrl.hideDidntFinishUI ());
-
 				}
 				Application.LoadLevel (Application.loadedLevel);
 			}
@@ -102,6 +116,7 @@ namespace VRDemo.Game.Brick.Manager
 			this._reticle.Hide ();
 			this._hctrl.enabled = true;
 			yield return StartCoroutine (this._uiCtrl.showPlayUI ());
+			yield return StartCoroutine (this._uiCtrl.showPlayTipUI ());
 			yield return StartCoroutine (this.playUpdate ());
 		}
 		//finish the game in time;
@@ -127,7 +142,7 @@ namespace VRDemo.Game.Brick.Manager
 				yield return null;
 			}
 			yield return StartCoroutine (this._uiCtrl.hidePlayUI ());
-
+			yield return StartCoroutine (this._uiCtrl.hidePlayTipUI ());
 			//gane over
 			if(this.onGameOver != null){
 				this.onGameOver ();

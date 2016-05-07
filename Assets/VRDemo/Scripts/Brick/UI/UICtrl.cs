@@ -9,8 +9,11 @@ namespace VRDemo.Game.Brick.UI
 	public class UICtrl : MonoBehaviour {
 		[SerializeField]private UIFader _introUI;
 		[SerializeField]private UIFader _playUI;
+		[SerializeField]private UIFader _playUI_tip;
 		[SerializeField]private UIFader _outroUI_finish;
 		[SerializeField]private UIFader _outroUI_didntFinish;
+		[SerializeField]private UIFader _aniUI_start;
+		[SerializeField]private UIFader _aniUI_end;
 		[SerializeField]private Text _timeText;
 		[SerializeField]private Text _bestTimeText;
 		[SerializeField]private Text _selectionPlayBarText;
@@ -60,6 +63,24 @@ namespace VRDemo.Game.Brick.UI
 			yield return StartCoroutine(this._outroUI_didntFinish.InteruptAndFadeOut());
 		}
 
+		public IEnumerator showAniStartUI(){
+			yield return StartCoroutine (this._aniUI_start.InteruptAndFadeIn());
+		}
+		public IEnumerator hideAniStartUI(){
+			yield return StartCoroutine (this._aniUI_start.InteruptAndFadeOut ());
+		}
+		public IEnumerator showAniEndUI(){
+			yield return StartCoroutine (this._aniUI_end.InteruptAndFadeIn());
+		}
+		public IEnumerator hideAniEndUI(){
+			yield return StartCoroutine (this._aniUI_end.InteruptAndFadeOut());
+		}
+		public IEnumerator showPlayTipUI(){
+			yield return StartCoroutine (this._playUI_tip.InteruptAndFadeIn());
+		}
+		public IEnumerator hidePlayTipUI(){
+			yield return StartCoroutine (this._playUI_tip.InteruptAndFadeOut());
+		}
 	}
 
 }
