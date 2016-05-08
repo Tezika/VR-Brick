@@ -20,6 +20,14 @@ namespace VRDemo.Common
 		private const string k_leftHandTag = "LeftHand";
 		private const string k_rightHandTag = "RightHand";
 
+		private const int k_idxOfBrickScene = 0;
+		private const int k_ideOfRoamScene = 1;
+
+		private const string k_ui_forward = "UI_Forward";
+		private const string k_ui_back = "UI_Back";
+		private const string k_ui_left = "UI_Left";
+		private const string k_ui_right = "UI_Right";
+
 
 
 
@@ -32,6 +40,14 @@ namespace VRDemo.Common
 		public static float Time { get { return s_time; } }
 		public static string LeftHand{get{ return k_leftHandTag;}}
 		public static string RightHand{get{ return k_rightHandTag;}}
+
+		public static int  BrickSceneIdx{get{ return k_idxOfBrickScene;}}
+		public static int  RoamSceneIdx{get{ return k_ideOfRoamScene;}}
+
+		public static string UIForward {get{return k_ui_forward;}}
+		public static string UIBack {get{return k_ui_back;}}
+		public static string UILeft {get{return k_ui_left;}}
+		public static string UIRight {get{return k_ui_right;}}
 
 
 		public static void SetGameType(GameType gameType)

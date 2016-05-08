@@ -17,7 +17,7 @@ GameObject:
   - 114: {fileID: 11470972}
   - 82: {fileID: 8223382}
   m_Layer: 5
-  m_Name: SelectionSlider
+  m_Name: SelectionSlider_hand
   m_TagString: Slider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -368,6 +368,7 @@ MonoBehaviour:
   m_DisableOnBarFill: 0
   m_DisappearOnBarFill: 0
   m_group: {fileID: 22574288}
+  _hCtrl: {fileID: 0}
 --- !u!114 &11490406
 MonoBehaviour:
   m_ObjectHideFlags: 1

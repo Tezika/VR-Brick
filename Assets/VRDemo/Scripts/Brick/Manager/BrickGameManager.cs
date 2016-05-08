@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
 using UnityEngine.UI;
 using VRDemo.Common;
-using VRDemo.Game.Brick.UI;
 using VRStandardAssets.Utils;
 using VRDemo.Game.Brick.Hand;
+using VRDemo.Game.Brick.UI;
 namespace VRDemo.Game.Brick.Manager
 {
 	public class BrickGameManager : MonoBehaviour {
@@ -73,9 +74,10 @@ namespace VRDemo.Game.Brick.Manager
 				if (this._isFinish) {
 					yield return StartCoroutine (this._uiCtrl.hideFinishUI());
 					//do somthing for roam;
+					SceneManager.LoadScene(SeeionDataCtrl.RoamSceneIdx);
 				} else {
 					yield return StartCoroutine (this._uiCtrl.hideDidntFinishUI ());
-					Application.LoadLevel (Application.loadedLevel);
+					SceneManager.LoadScene (SeeionDataCtrl.BrickSceneIdx);
 				}
 			}
 

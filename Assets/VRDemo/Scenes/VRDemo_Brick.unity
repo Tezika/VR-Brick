@@ -2270,7 +2270,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: OK,you have to rebuild it within the time limit,good luck:)
+  m_Text: 'OK,you will rebuild it within the time limit,
+
+    good luck:)'
 --- !u!222 &557210860
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2675,6 +2677,10 @@ Prefab:
       propertyPath: _bricksAnimator
       value: 
       objectReference: {fileID: 1193851081}
+    - target: {fileID: 11455104, guid: 3cb52014878d3a54dbcfb632bbfeba24, type: 2}
+      propertyPath: _aniUIAppearTime
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3cb52014878d3a54dbcfb632bbfeba24, type: 2}
   m_IsPrefabParent: 0
@@ -3490,7 +3496,7 @@ CanvasGroup:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 930569732}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -4853,7 +4859,7 @@ Prefab:
       objectReference: {fileID: 930569737}
     - target: {fileID: 22437964, guid: c10ace7851837a5458c584621306f8e3, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11450808, guid: c10ace7851837a5458c584621306f8e3, type: 2}
       propertyPath: m_Text
@@ -4863,6 +4869,10 @@ Prefab:
       propertyPath: _hCtrl
       value: 
       objectReference: {fileID: 1160968320}
+    - target: {fileID: 22574288, guid: c10ace7851837a5458c584621306f8e3, type: 2}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c10ace7851837a5458c584621306f8e3, type: 2}
   m_IsPrefabParent: 0
@@ -5091,6 +5101,7 @@ GameObject:
   - 114: {fileID: 1297737791}
   - 114: {fileID: 1297737790}
   - 114: {fileID: 1297737789}
+  - 114: {fileID: 1297737795}
   m_Layer: 0
   m_Name: CenterEyeAnchor
   m_TagString: MainCamera
@@ -5291,6 +5302,24 @@ MonoBehaviour:
   m_DebugRayLength: 5
   m_DebugRayDuration: 1
   m_RayLength: 500
+--- !u!114 &1297737795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1297737782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31957ab02a8654b448736febf48c16e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FadeImage: {fileID: 1643796666}
+  m_DefaultSnapshot: {fileID: 24500003, guid: 75a84222fa2bbb54999ba9cd0af4182a, type: 2}
+  m_FadedSnapshot: {fileID: 24559432, guid: 3c034867c6b5e9c49a6afc51d6679306, type: 2}
+  m_FadeColor: {r: 0, g: 0, b: 0, a: 1}
+  m_FadeDuration: 2
+  m_FadeInOnSceneLoad: 1
+  m_FadeInOnStart: 1
 --- !u!1 &1320100977
 GameObject:
   m_ObjectHideFlags: 0
@@ -6253,7 +6282,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Catch th part above the bottom:)
+  m_Text: Catch the part above the bottom:)
 --- !u!222 &1571525871
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7212,12 +7241,16 @@ Prefab:
       objectReference: {fileID: 930569737}
     - target: {fileID: 22437964, guid: c10ace7851837a5458c584621306f8e3, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11473032, guid: c10ace7851837a5458c584621306f8e3, type: 2}
       propertyPath: _hCtrl
       value: 
       objectReference: {fileID: 1160968320}
+    - target: {fileID: 22574288, guid: c10ace7851837a5458c584621306f8e3, type: 2}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c10ace7851837a5458c584621306f8e3, type: 2}
   m_IsPrefabParent: 0

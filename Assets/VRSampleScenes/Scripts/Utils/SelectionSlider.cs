@@ -217,7 +217,7 @@ namespace VRStandardAssets.Utils
         {
             // The user is no longer looking at the bar.
             m_GazeOver = false;
-
+			this._isFilling = false;
             // If the coroutine has been started (and thus we have a reference to it) stop it.
             if (m_FillBarRoutine != null)
                 StopCoroutine(m_FillBarRoutine);
@@ -229,7 +229,7 @@ namespace VRStandardAssets.Utils
 
 		void handleThumbGesture(){
 			if (m_GazeOver && !this._isFilling) {
-				this._isFilling = !this._isFilling;
+				this._isFilling = true;
 				//prevent the update all the time
 				Debug.Log("start filling");
 				 m_FillBarRoutine = StartCoroutine(FillBar());	
@@ -244,7 +244,7 @@ namespace VRStandardAssets.Utils
 			// Reset the timer and bar values.
 			m_Timer = 0f;
 			SetSliderValue(0f);
-			this._isFilling = !this._isFilling;
+			this._isFilling = false;
 		}
     }
 }
